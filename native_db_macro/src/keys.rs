@@ -68,7 +68,7 @@ impl<O: ToTokenStream> ToTokenStream for KeyDefinition<O> {
                 #struct_name::native_model_id(),
                 #struct_name::native_model_version(),
                 #key_name,
-                <#parsed_type_token_stream>::key_names(),
+                <#parsed_type_token_stream as native_db::ToKey>::key_names(),
                 #options
             )
         }

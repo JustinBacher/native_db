@@ -70,7 +70,7 @@ fn insert_item_fields() {
 #[native_db(
     primary_key(m_city1 -> City),
     secondary_key(m_city2 -> City, unique),
-    secondary_key(m_city2_ref -> City, unique),
+    //secondary_key(m_city2_ref -> City, unique), // TODO: Out of scope for now, but to explore.
     secondary_key(m_city3 -> Option<City>, optional),
 )]
 struct ItemFunctions {
@@ -88,9 +88,10 @@ impl ItemFunctions {
         self.city2.clone()
     }
 
-    fn m_city2_ref(&self) -> &City {
-        &self.city2
-    }
+    // TODO: Out of scope for now, but to explore.
+    // fn m_city2_ref(&self) -> &City {
+    //     &self.city2
+    // }
 
     fn m_city3(&self) -> Option<City> {
         self.city3.clone()

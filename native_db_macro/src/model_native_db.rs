@@ -26,24 +26,25 @@ impl ModelNativeDB {
                 let out = if key.is_field() {
                     if key.options.optional {
                         quote! {
-                            let value: Option<native_db::db_type::Key>  = self.#key_ident.as_ref().map(|v|(&v).to_key());
+                            //let value: Option<native_db::db_type::Key>  = self.#key_ident.as_ref().map(|v|(&v).to_key());
+                            let value: Option<native_db::db_type::Key> = self.#key_ident.as_ref().map(|v| native_db::ToKey::to_key(v));
                             let value = native_db::db_type::KeyEntry::Optional(value);
                         }
                     } else {
                         quote! {
-                            let value: native_db::db_type::Key  = (&self.#key_ident).to_key();
+                            let value: native_db::db_type::Key = native_db::ToKey::to_key(&self.#key_ident);
                             let value = native_db::db_type::KeyEntry::Default(value);
                         }
                     }
                 } else if key.is_function() {
                     if key.options.optional {
                         quote! {
-                            let value: Option<native_db::db_type::Key> = self.#key_ident().map(|v|(&v).to_key());
+                            let value: Option<native_db::db_type::Key> = self.#key_ident().map(|v| native_db::ToKey::to_key(&v));
                             let value = native_db::db_type::KeyEntry::Optional(value);
                         }
                     } else {
                         quote! {
-                            let value: native_db::db_type::Key = (&self.#key_ident()).to_key();
+                            let value: native_db::db_type::Key = native_db::ToKey::to_key(&self.#key_ident());
                             let value = native_db::db_type::KeyEntry::Default(value);
                         }
                     }
@@ -73,13 +74,13 @@ impl ModelNativeDB {
         if primary_key.is_function() {
             quote! {
                 fn native_db_primary_key(&self) -> native_db::db_type::Key {
-                    (&self.#ident()).to_key()
+                    native_db::ToKey::to_key(&self.#ident())
                 }
             }
         } else {
             quote! {
                 fn native_db_primary_key(&self) -> native_db::db_type::Key {
-                    (&self.#ident).to_key()
+                    native_db::ToKey::to_key(&self.#ident)
                 }
             }
         }
