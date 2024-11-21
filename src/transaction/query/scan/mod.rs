@@ -10,6 +10,7 @@ use crate::transaction::internal::r_transaction::InternalRTransaction;
 use crate::transaction::internal::rw_transaction::InternalRwTransaction;
 
 /// Get values from the database.
+#[derive(Clone)]
 pub struct RScan<'db, 'txn> {
     pub(crate) internal: &'txn InternalRTransaction<'db>,
 }
@@ -53,6 +54,7 @@ impl<'txn> RScan<'_, 'txn> {
     }
 }
 
+#[derive(Clone)]
 pub struct RwScan<'db, 'txn> {
     pub(crate) internal: &'txn InternalRwTransaction<'db>,
 }

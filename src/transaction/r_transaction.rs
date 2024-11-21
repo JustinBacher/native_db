@@ -3,6 +3,7 @@ use crate::transaction::query::RGet;
 use crate::transaction::query::RLen;
 use crate::transaction::query::RScan;
 
+#[derive(Clone)]
 pub struct RTransaction<'db> {
     pub(crate) internal: InternalRTransaction<'db>,
 }

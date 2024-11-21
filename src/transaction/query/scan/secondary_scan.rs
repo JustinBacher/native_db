@@ -8,6 +8,7 @@ use std::marker::PhantomData;
 use std::ops::RangeBounds;
 
 /// Scan values from the database by secondary key.
+#[derive(Clone)]
 pub struct SecondaryScan<PrimaryTable, SecondaryTable, T: ToInput>
 where
     PrimaryTable: redb::ReadableTable<Key, &'static [u8]>,

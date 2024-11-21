@@ -53,7 +53,7 @@ use crate::{db_type::Result, table_definition::NativeModelOptions, ModelBuilder,
 ///     Ok(())
 /// }
 /// ```
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Clone)]
 pub struct Models {
     pub(crate) models_builder: HashMap<String, ModelBuilder>,
 }

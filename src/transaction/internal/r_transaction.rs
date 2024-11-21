@@ -4,6 +4,7 @@ use crate::transaction::internal::private_readable_transaction::PrivateReadableT
 use crate::Model;
 use std::collections::HashMap;
 
+#[derive(Clone)]
 pub struct InternalRTransaction<'db> {
     pub(crate) redb_transaction: redb::ReadTransaction,
     pub(crate) table_definitions: &'db HashMap<String, PrimaryTableDefinition<'db>>,

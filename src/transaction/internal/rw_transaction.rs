@@ -10,6 +10,7 @@ use redb::TableHandle;
 use std::collections::{HashMap, HashSet};
 use std::fmt::Debug;
 
+#[derive(Clone)]
 pub struct InternalRwTransaction<'db> {
     pub(crate) redb_transaction: redb::WriteTransaction,
     pub(crate) primary_table_definitions: &'db HashMap<String, PrimaryTableDefinition<'db>>,

@@ -3,6 +3,7 @@ use redb::Builder;
 use std::path::Path;
 use std::path::PathBuf;
 
+#[derive(Clone)]
 pub(crate) struct DatabaseInstance {
     kind: DatabaseInstanceKind,
 }
@@ -45,6 +46,7 @@ impl DatabaseInstance {
     }
 }
 
+#[derive(Clone)]
 enum DatabaseInstanceKind {
     InMemory {
         redb_database: redb::Database,

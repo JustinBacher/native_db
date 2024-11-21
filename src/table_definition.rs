@@ -6,6 +6,7 @@ use std::fmt::Debug;
 pub(crate) type RedbPrimaryTableDefinition<'a> = redb::TableDefinition<'a, Key, &'static [u8]>;
 pub(crate) type RedbSecondaryTableDefinition<'a> = redb::MultimapTableDefinition<'a, Key, Key>;
 
+#[derive(Clone)]
 pub struct PrimaryTableDefinition<'a> {
     pub(crate) model: crate::Model,
     pub(crate) redb: RedbPrimaryTableDefinition<'a>,

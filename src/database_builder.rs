@@ -119,7 +119,7 @@ impl Builder {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub(crate) struct ModelBuilder {
     pub(crate) model: Model,
     pub(crate) native_model_options: NativeModelOptions,

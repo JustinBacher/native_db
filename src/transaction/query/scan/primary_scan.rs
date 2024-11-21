@@ -4,6 +4,7 @@ use std::marker::PhantomData;
 use std::ops::RangeBounds;
 
 /// Scan values from the database.
+#[derive(Clone)]
 pub struct PrimaryScan<PrimaryTable, T: ToInput>
 where
     PrimaryTable: redb::ReadableTable<Key, &'static [u8]>,

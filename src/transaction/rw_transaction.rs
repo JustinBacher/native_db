@@ -12,6 +12,7 @@ use std::sync::{Arc, RwLock};
 
 use super::internal::private_readable_transaction::PrivateReadableTransaction;
 
+#[derive(Clone)]
 pub struct RwTransaction<'db> {
     pub(crate) watcher: &'db Arc<RwLock<watch::Watchers>>,
     pub(crate) batch: RefCell<watch::Batch>,

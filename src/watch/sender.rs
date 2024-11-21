@@ -5,6 +5,7 @@ use crate::watch::{Event, MpscSender};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 
+#[derive(Clone)]
 pub(crate) struct Watchers(HashMap<u64, (TableFilter, Arc<Mutex<MpscSender<Event>>>)>);
 
 impl Watchers {

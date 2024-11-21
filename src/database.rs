@@ -31,6 +31,7 @@ use std::sync::{Arc, RwLock};
 ///    // etc...
 ///    Ok(())
 /// }
+#[derive(Clone)]
 pub struct Database<'a> {
     pub(crate) instance: DatabaseInstance,
     pub(crate) metadata: Metadata,
